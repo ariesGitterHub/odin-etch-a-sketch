@@ -1,0 +1,145 @@
+/* UnifrakturCook Font */
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+
+.unifrakturCook {
+  font-family: 'UnifrakturCook', cursive;
+}
+
+/* Noto Color Emojis */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
+
+.emojiFont {
+  font-family: 'Noto Color Emoji', sans-serif;
+}
+
+/* Sigmar One Font */
+@import url('https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap');
+
+.sigmarOne {
+    font-family: 'Sigmar One', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  /* border: 5px dotted darkred; */
+}
+
+:root {
+    --red: #7c2f2f;
+    --orange: #a3731b;
+    --yellow:#c3ab27;
+    --green: #1f3d1f;
+    --blue: #242471;
+    --purple: #520c52;
+    --brown: #76371a;
+    --black: #423c3c;
+    --grey: #958686;
+    --white: #f3e6e6;
+
+    --dkgrey: #26272d;
+    --dkgrey-trans: #26272dac;
+    --ltgrey: #a8a2a2;
+
+    --wood: #297062;
+    --fire: #7e2424;
+    --earth: #987320;
+    --metal: #90555d;
+    --water: #4d4b71;
+
+    --title-text: 'Sigmar One', sans-serif;
+    /* --header-text: 'UnifrakturCook', cursive;; */
+    --main-text: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;;
+}
+
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--main-text);
+  font-size: 1.3em;
+  text-align: center;
+  color: #F2EEE3;
+}
+
+body {
+  min-height: 100vh;
+}
+
+body, main-section {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+
+/* HEADER */
+
+header {
+    background-color: var(--black);
+}
+
+header h1 {
+    display: flex;
+    justify-content: center;
+    font-family: var(--title-text);
+    margin: -5px 0 -5px 0;
+}
+
+header, aside, footer {
+    border: 5px solid var(--white);
+}
+
+/* MAIN SECTION */
+
+content-section {
+    background-color: var(--white);
+    color: var(--black);
+    text-align: left;
+    padding: 20px;
+}
+
+content-section {
+  flex: 1 1 auto;
+}
+
+/* ASIDE */
+
+aside {
+  background: var(--red);
+  text-align: left;
+  padding: 0 10px 0 10px;
+}
+
+aside h3 {
+   font-family: var(--title-text); 
+}
+
+/* FOOTER */
+
+footer {
+    background-color: var(--black);
+    /* border: 10px dotted var(--dkgrey); */
+    color: var(--white);
+    display: flex;
+        justify-content: center;
+    font-family: var(--title-text);
+    margin-top: auto;
+}
+
+footer p {
+    font-size: 24px;
+}
+
+/* MEDIA QUERIES */
+
+@media (min-width: 768px) {
+  aside {
+    order: -1;
+    flex: 0 0 260px;
+  }
+
+  main-section {
+    flex-direction: row;
+  }
+}
