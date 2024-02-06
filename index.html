@@ -2,60 +2,203 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Test</title>
+<meta charset="UTF-8">
 
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">	
-    <link href="https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">	
+<link href="https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css">
 
-    <script src="javascript.js" defer></script>
+<script src="javascript.js" defer></script>
 
-    <title>Unknown Etch-a-Sketch</title>
+<title>Etch-a-Dungeon</title>
 </head>
 
-<body class="holy-grail">
+<body>
 
-		<header>
-			<h1>Unknown Etch-a-Sketch</h1>
-		</header>
+<header>
+<!-- <h1>Etch-a-Dungeon</h1> -->
+<img src="eadTitleGraphic.svg" alt="">
+<p>Copyright © Mad Muffin Man Design Studio 2024</p>
+</header>
 
-		<main-section>
+<main-section>
 
-            <aside class="sidebar-left">
-				<h3>Controls</h3>
-				<aside-content>SSSS.
-				</aside-content>
-			</aside>
+<aside>
 
-			<content-section>
-				<p></p>
 
-                <outer-div-container>
-                    <inner-div-container>
 
-                    </inner-div-container>
-                </outer-div-container>
+    
+<!-- <h3>Controls</h3> -->
+<aside-content>
+    <top-buttons>    
+        <button class="btn-main">
+            Reset All
+        </button>
+        <button class="btn-main">
+            Directions
+        </button>
+</top-buttons>
+<hr>
+<toggle-layer>
+<in-a-column>
+    <p>Current Color</p>
+    <box id="current-color">#efefef80</box>
+</in-a-column>
 
-			
-			</content-section>
-<!-- 
-			<aside class="sidebar-right">
-				<h3>BBBB</h3>
-				<aside-content>SSSS.
-				</aside-content>
-			</aside> -->
 
-		</main-section>
+<in-a-row>
+<input type="checkbox" id="etch-style-switch" />
+<label for="etch-style-switch">
+</label>
+<p class="toggle-type">
+Detail vs Stream
+</p>
+</in-a-row>	
 
-		<footer>
-			<p>Copyright © Mad Muffin Man Design Studio 2024</p>
-		</footer>
-	</body>
+
+
+
+<in-a-row>
+<!-- <color-picker-container class="color-picker"> -->
+
+
+<input type="color" id="colorInput">
+
+<button class="color-preview color-value" id="colorPreview">use box to pick color</button>
+<!-- </color-picker-container> -->
+</in-a-row>
+
+<in-a-row>
+<button 
+class="btnc color-value" 
+id="btnc11" 
+>
+</button>
+<button 
+class="btnc color-value" 
+id="btnc12" 
+>
+</button>
+<button 
+class="btnc color-value" 
+id="btnc13" 
+>
+</button>
+<button 
+class="btnc color-value" 
+id="btnc14" 
+>
+</button>
+<button 
+class="btnc color-value" 
+id="btnc15" 
+>
+</button>
+</in-a-row>
+
+<in-a-row>
+<button 
+class="btnc color-value" 
+id="btnc21" 
+>
+</button>
+<button 
+class="btnc color-value" 
+id="btnc22" 
+>
+</button>
+<button 
+class="btnc color-value" 
+id="btnc23" 
+>
+</button>
+<button 
+class="btnc color-value" 
+id="btnc24" 
+>
+</button>
+<button 
+class="btnc color-value" 
+id="btnc25" 
+>
+</button>
+</in-a-row>
+
+<in-a-row>
+<button 
+class="btnc color-value" 
+id="btnc31" 
+>
+</button>
+<button 
+class="btnc color-value" 
+id="btnc32" 
+>
+</button>
+<button 
+class="btnc color-value" 
+id="btnc33" 
+>
+</button>
+<button 
+class="btnc color-value" 
+id="btnc34" 
+>
+</button>
+<button 
+class="btnc color-value" 
+id="btnc35" 
+>
+</button>
+</in-a-row>
+
+
+
+<hr>
+<in-a-row>
+<input type="checkbox" id="top-grid-hide" />
+<label for="top-grid-hide">
+</label>
+<p class="toggle-type">
+Paint vs Tiled
+</p>
+</in-a-row>
+<hr>
+
+</toggle-layer>
+
+
+</aside-content>
+</aside>
+
+<master-container>
+
+<!-- <container-top>
+<inner-container-top>
+</inner-container-top>
+</container-top> -->
+<!-- <container-bottom> -->
+
+<inner-container-bot>
+</inner-container-bot>
+
+<!-- </container-bottom> -->
+<!-- <container-top> -->
+<inner-container-top class="see-top">
+</inner-container-top>
+<!-- </container-top> -->
+<!-- <img-container>
+<img src="medievalBorderRevised.svg" alt="">
+</img-container> -->
+
+</master-container>
+</main-section>
+
+</body>
 
 </html>

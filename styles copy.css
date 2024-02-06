@@ -1,0 +1,289 @@
+/* UnifrakturCook Font */
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+
+/* Noto Color Emojis */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
+
+/* Sigmar One Font */
+@import url('https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap');
+
+* {
+  box-sizing: border-box;
+  /* border: 5px dotted darkred; */
+}
+
+
+:root {
+    --red: #7c2f2f;
+    --orange: #a3731b;
+    --yellow:#c3ab27;
+    --green: #1f3d1f;
+    --blue: #242471;
+    --purple: #520c52;
+    --brown: #76371a;
+    --black: #423c3c;
+    --grey: #958686;
+    --white: #f3e6e6;
+
+    --dkgrey: #26272d;
+    --dkgrey-trans: #26272dac;
+    --ltgrey: #a8a2a2;
+
+    --wood: #297062;
+    --fire: #7e2424;
+    --earth: #987320;
+    --metal: #90555d;
+    --water: #4d4b71;
+
+    --title-text: 'Sigmar One', sans-serif;
+    /* --header-text: 'UnifrakturCook', cursive;; */
+    --main-text: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;;
+
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--main-text);
+  font-size: 1.3em;
+  text-align: center;
+  color: #F2EEE3;
+}
+
+body {
+  min-height: 100vh;
+}
+
+body {
+    display: flex;
+/* ?????????????????????? below */
+        flex: 1 1 auto; 
+        flex-direction: column;
+}
+
+/* HEADER */
+
+header {
+    background-color: var(--black);
+}
+
+header h1 {
+  color: var(--white);
+    display: flex;
+    justify-content: center;
+    font-family: var(--title-text);
+    margin: -5px 0 -5px 0;
+}
+
+header, aside, footer {
+    border: 5px solid var(--white);
+}
+
+/* MAIN SECTION */
+main-section {
+    display: flex;
+        flex: 1 1 auto;
+        justify-content: space-evenly;
+        align-items: space-evenly;
+}
+
+
+
+/* ETCH-A-SKETCH LAYER with less opacity and variable sizes */
+
+master-container, container-top, container-bottom {
+  height: 960px;
+  width: 1200px;
+  margin: auto;
+}
+
+inner-container-top {
+  /* background-color: var(--blue);
+  color: var(--red); */
+  opacity: .3;
+  display: flex;
+      align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+    transform: translate(0px, -960px);
+    margin: auto;
+}
+
+/* TEST */
+.divTopClass {
+  height: 15px;
+  width: 15px;
+  border: 1px solid var(--red);
+  display: flex;  
+      align-items: center;
+      justify-content: center;
+  font-size: 5px;
+    transform: translate(0px, 960px);
+    
+}
+
+inner-container-top div {
+
+  height: 15px;
+  width: 15px;
+  /* border: 1px solid var(--white); */
+  /* display: flex;  
+      align-items: center;
+      justify-content: center; */
+  font-size: 5px;
+    /* transform: translate(0px, -960px); */
+    
+}
+
+inner-container-top div:hover {
+  background-color: black;
+  /* color: white; */
+}
+
+inner-container-top div:active {
+  background-color: fuchsia;
+  /* color: white; */
+}
+
+/* Fixed square DUNGEON TILE LAYER */
+
+/* container-bottom {
+  height: 960px;
+  width: 1200px;
+  margin: auto;
+} */
+
+inner-container-bot {
+ opacity: .7;
+  background-color: var(--white);
+  color: var(--black);
+  /* opacity: .5; */
+  display: flex;
+      align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* transform: translate(-1200px, -960px); */
+  margin: auto;
+}
+
+inner-container-bot div {
+  height: 30px;
+  width: 30px;
+  border: 1px solid var(--ltgrey);
+  display: flex;  
+      align-items: center;
+      justify-content: center;
+  font-size: 10px;
+}
+
+inner-container-bot div:hover {
+  background-color: var(--red);
+  color: var(--red);
+}
+
+/* ASIDE */
+
+aside {
+  background: var(--red);
+  display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+  text-align: left;
+  padding: 0 10px 0 10px;
+}
+
+aside h3 {
+   font-family: var(--title-text); 
+}
+
+.sidebar-left {
+
+}
+
+.sidebar-right {
+
+}
+
+/* FOOTER */
+
+footer {
+    background-color: var(--black);
+    /* border: 10px dotted var(--dkgrey); */
+    color: var(--white);
+    display: flex;
+        justify-content: center;
+    font-family: var(--title-text);
+    margin-top: auto;
+}
+
+footer p {
+    font-size: 24px;
+}
+
+/* BUTTONS AND TOGGLES */
+
+toggle-layer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -30px 0 -30px 0;
+}
+
+input[type=checkbox]{
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 70px;
+  height: 40px;
+  background: var(--yellow);
+  display: block;
+  border-radius: 100px;
+  position: relative;
+}
+
+label:after {
+  content: '';
+  position: absolute;
+
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  background: var(--red);
+  border-radius: 100px;
+  transition: 0.3s;
+}
+
+input:checked + label {
+  background: var(--black);
+}
+
+input:checked + label:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+
+label:active:after {
+  width: 70px;
+}
+
+
+/* MEDIA QUERIES */
+
+@media (min-width: 768px) {
+  aside {
+    order: -1;
+    flex: 0 0 260px;
+  }
+
+  main-section {
+    flex-direction: row;
+  }
+}
