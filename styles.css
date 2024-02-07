@@ -187,8 +187,10 @@ inner-container-bot {
 }
 
 .divBotClass:hover {
-  background-color: red;
-  color: red;
+  background-color: ;
+  border: 5px double black;
+  border-radius: 50px;
+
 }
 
 /* ASIDE */
@@ -421,10 +423,22 @@ in-a-row {
 }
 
 .tile-btn {
-  height: 30px;
-  width: 30px;
-
+  height: 35px;
+  width: 35px;
+  padding: 3px;
 }
+
+/* .tile-btn:hover {
+  border: 3px solid white;
+  outline: 3px solid black;
+}
+
+.tile-btn:active {
+transform: scale(1.07);
+border: 3px solid black;
+outline: 3px solid white;
+} */
+
 
 
 

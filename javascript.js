@@ -222,6 +222,7 @@ function drawDetailOn(div) {
   div.addEventListener("click", handleDetail);
 }
 function handleDetail() {
+  if (!toggleHideTop.checked)
   this.style.backgroundColor = pickedColor;
   // this.style.border = "blue";
 }
@@ -253,7 +254,7 @@ function drawSketchOn(div) {
   });
 }
 
-function drawSketchTempOff(div) {
+function drawSketchTempOff() {
   document.addEventListener("mouseup", function () {
     isMouseBtnPressed = false;
     console.log(`isMouseBtnPressed = ${isMouseBtnPressed}`);
@@ -262,7 +263,7 @@ function drawSketchTempOff(div) {
 drawSketchTempOff();
 
 document.addEventListener("mousemove", function (event) {
-  if (isMouseBtnPressed) {
+  if (isMouseBtnPressed && !toggleHideTop.checked) {
     const target = event.target;
     if (target.classList.contains("divTopClass")) {
       target.style.backgroundColor = pickedColor;
@@ -307,3 +308,24 @@ function etchStyleSwitch() {
 
 etchStyleSwitch();
 
+
+// document.addEventListener("click", insertTile);
+
+let tileBtn = document.querySelectorAll(".tile-btn");
+
+let selectedTile;
+
+document.addEventListener("click", insertTile);
+
+function insertTile() {
+  if (toggleHideTop.checked) {
+    tileBtn.forEach(function () {
+      console.log("Tile butn clicked......");
+
+      })
+
+  }
+}
+
+
+insertTile();
