@@ -187,10 +187,9 @@ inner-container-bot {
 }
 
 .divBotClass:hover {
-  background-color: ;
-  border: 5px double black;
-  border-radius: 50px;
-
+  /* background-color: black; */
+  border: 10px double black;
+  border-radius: 100%;
 }
 
 /* ASIDE */
@@ -360,14 +359,14 @@ transform: scale(1.1);
 } */
 
 button:hover {
-  border: 3px solid white;
-  outline: 3px solid black;
+  border: 2px solid white;
+  outline: 2px solid black;
 }
 
 button:active {
 transform: scale(1.07);
-border: 3px solid black;
-outline: 3px solid white;
+border: 2px solid black;
+outline: 2px solid white;
 }
 
 in-a-column {
@@ -422,24 +421,30 @@ in-a-row {
 
 }
 
-.tile-btn {
-  height: 35px;
-  width: 35px;
-  padding: 3px;
+inner-tile-btn-container {
+  display: flex;
+justify-content: center;
+align-items: center;
+  flex-wrap: wrap;
 }
 
-/* .tile-btn:hover {
-  border: 3px solid white;
-  outline: 3px solid black;
+.tile-btn {
+  height: 30px;
+  width: 30px;
+  /* margin: 1px; */
+}
+
+.tile-btn:hover {
+ transform: scale(1.5); 
+  /* border: 3px solid white;
+  outline: 3px solid black; */
 }
 
 .tile-btn:active {
-transform: scale(1.07);
-border: 3px solid black;
-outline: 3px solid white;
-} */
-
-
+ transform: scale(1.5); 
+/* border: 3px solid black;
+outline: 3px solid white; */
+}
 
 
 input[type=checkbox]{
