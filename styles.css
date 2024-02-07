@@ -384,15 +384,19 @@ in-a-column p {
 }
 
 #current-color {
-  height: 50px;
+  height: 40px;
   width: 245px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--whi5);
   color: var(--bla5);
   border: 5px dashed black;
   border-radius: 10px;
   font-family: var(--title-text);
-  font-size: 24px;
+  font-size: 20px;
   text-align: center;
+
 }
 
 #current-color:hover {
@@ -411,10 +415,18 @@ padding: 5px;
 in-a-row {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
 
 }
+
+.tile-btn {
+  height: 30px;
+  width: 30px;
+
+}
+
+
 
 input[type=checkbox]{
   height: 0;
