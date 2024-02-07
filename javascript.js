@@ -42,10 +42,6 @@ function hideTopGrid() {
 
 hideTopGrid();
 
-
-
-
-
 function makeBotGrid() {
   for (let i = 0; i < blockNumBot; i++) {
     let divBot = document.createElement("div");
@@ -119,7 +115,6 @@ colorInput.addEventListener("input", () => {
 function setContrastColor() {
   const { r, g, b } = rgbColor;
   const yiq = (r * 299 + g * 587 + b * 114) / 1000;
-  // https://en.wikipedia.org/wiki/YIQ
 
   let contrastColor;
 
@@ -134,9 +129,6 @@ function setContrastColor() {
 }
 setContrastColor()
 });
-
-
-
 
 
 //select all possible choices
