@@ -1,64 +1,66 @@
+const me = "Copyright © Mad Muffin Man Design Studio 2024";
+const addMe = document.querySelector("me");
+addMe.textContent = me;
 
 //*
-// MAKE TOP LAYER FOR DRAWING AND BOTTOM LAYER FOR DUNGEON TILES
+// MAKE PAINT LAYER FOR DRAWING AND TILE LAYER FOR DUNGEON TILES
 
-let blockNumTop = 5120; //64x80 at 15px for "drawing" top layer.
-let blockNumBot = 1280; //32x40 at 30px for "dungeon tile" bottom layer.
+let blockNumPaint = 5120; //64x80 at 15px for "drawing" paint layer.
+let blockNumTile = 1280; //32x40 at 30px for "dungeon tile" layer.
+// let blockNumPaint = 20480; //124x160 at 7.5px for more detailed drawing layer. This slowed everything down too much.
 
-// let blockNumTop = 20480; //124x160 at 7.5px for more detailed drawing layer. This slowed everything down too much.
+let divPaint = "";
+let divTile = "";
 
-let divTop = "";
-let divBot = "";
+const innerContainerPaint = document.querySelector("inner-container-paint");
+const innerContainerTile = document.querySelector("inner-container-tile");
 
-const innerContainerTop = document.querySelector("inner-container-top");
-const innerContainerBot = document.querySelector("inner-container-bot");
-
-function makeTopGrid() {
-  for (let i = 0; i < blockNumTop; i++) {
-    divTop = document.createElement("div");
-    divTop.className = "divTopClass";
-    innerContainerTop.appendChild(divTop);
+function makePaintGrid() {
+  for (let i = 0; i < blockNumPaint; i++) {
+    divPaint = document.createElement("div");
+    divPaint.className = "divPaintClass";
+    innerContainerPaint.appendChild(divPaint);
   }
 }
-makeTopGrid();
+makePaintGrid();
 
-// TOGGLE TOP GRID TO HIDE IT AND WORK ON BOTTOM LAYER
+// TOGGLE PAINT GRID TO HIDE IT AND WORK ON TILE LAYER
 
-const toggleHideTop = document.querySelector("#top-grid-hide");
+const toggleHidePaint = document.querySelector("#paint-grid-hide");
 
-document.addEventListener("change", hideTopGrid);
+document.addEventListener("change", hidePaintGrid);
 
-function hideTopGrid() {
-  if (toggleHideTop.checked) {
-    document.querySelectorAll(".divTopClass").forEach(function (div) {
+function hidePaintGrid() {
+  if (toggleHidePaint.checked) {
+    document.querySelectorAll(".divPaintClass").forEach(function (div) {
       div.style.display = "none";
     });
-    console.log(`toggleHideTop is ${toggleHideTop.checked}`);
+    console.log(`toggleHidePaint is ${toggleHidePaint.checked}`);
   } else {
-    document.querySelectorAll(".divTopClass").forEach(function (div) {
-      div.style.display = "flex";
+    document.querySelectorAll(".divPaintClass").forEach(function (div) {
+      div.style.display = "block";
     });
-    console.log(`toggleHideTop is ${toggleHideTop.checked}`);
+    console.log(`toggleHidePaint is ${toggleHidePaint.checked}`);
   }
 }
 
-hideTopGrid();
+hidePaintGrid();
 
-function makeBotGrid() {
-  for (let i = 0; i < blockNumBot; i++) {
-    let divBot = document.createElement("div");
-    divBot.className = "divBotClass";
-    innerContainerBot.appendChild(divBot);
+function makeTileGrid() {
+  for (let i = 0; i < blockNumTile; i++) {
+    let divTile = document.createElement("div");
+    divTile.className = "divTileClass";
+    innerContainerTile.appendChild(divTile);
   }
 }
-makeBotGrid();
+makeTileGrid();
 
 //*
 // COLOR PICKER AND PREVIEW BUTTON THAT IS CLICKABLE
 
-const colorInput = document.querySelector("#colorInput");
-const colorPreview = document.querySelector("#colorPreview");
-const hexNameThatButton = document.querySelector("#colorPreview");
+const colorInput = document.querySelector("#color-input");
+const colorPreview = document.querySelector(".color-preview");
+const hexNameThatButton = document.querySelector(".color-preview");
 
 // UPDATES COLOR PREVIEW AFTER INPUT
 
@@ -107,14 +109,17 @@ colorInput.addEventListener("input", function () {
 //*
 // GET CSS COLOR OF THE COLOR SELECTOR BUTTONS
 
+
 let pickedColor;
 const currentColorButton = document.querySelector("#current-color");
 
 document.addEventListener("DOMContentLoaded", function () {
   const btnColors = document.querySelectorAll(".color-value");
-
+  // const noColor = document.querySelector("#no-color");
+ 
   btnColors.forEach(function (button) {
     button.addEventListener("click", function () {
+      
       const buttonBgColor = window
         .getComputedStyle(button)
         .getPropertyValue("background-color");
@@ -122,6 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // console.log(`This color ${pickedColor} is defined here.`); //DE-FINED HERE
       // console.log(
       //   `Button clicked! Background color is: ${rgbToHex(buttonBgColor)}.`);
+
       currentColorButton.style.backgroundColor = pickedColor;
       currentColorButton.textContent = pickedColor;
     });
@@ -135,8 +141,10 @@ document.addEventListener("DOMContentLoaded", function () {
       ("0" + parseInt(rgbArray[0], 10).toString(16)).slice(-2) +
       ("0" + parseInt(rgbArray[1], 10).toString(16)).slice(-2) +
       // ("0" + parseInt(rgbArray[2], 10).toString(16)).slice(-2); // C'ED OUT B/C I ADDED CODE LINE BELOW TO FORCE 80 AN END OF HEX (ADDING 80 MEANS 1/2 OPACITY)
+
       ("0" + parseInt(rgbArray[2], 10).toString(16)).slice(-2) +
       "80";
+      
     return hex.toUpperCase();
   }
   // console.log(`I should not see ${pickedColor} here, part 1.`); //UNDEFINED HERE
@@ -155,7 +163,7 @@ function drawDetailOn(div) {
   div.addEventListener("click", handleDetail);
 }
 function handleDetail() {
-  if (!toggleHideTop.checked && !isDrawSketchOn)
+  if (!toggleHidePaint.checked && !isDrawSketchOn)
     this.style.backgroundColor = pickedColor;
 }
 function drawDetailOff(div) {
@@ -182,9 +190,9 @@ function drawSketchTempOff() {
 drawSketchTempOff();
 
 document.addEventListener("mousemove", function (event) {
-  if (isMouseBtnPressed && !toggleHideTop.checked && !isDrawDetailOn) {
+  if (isMouseBtnPressed && !toggleHidePaint.checked && !isDrawDetailOn) {
     const target = event.target;
-    if (target.classList.contains("divTopClass")) {
+    if (target.classList.contains("divPaintClass")) {
       target.style.backgroundColor = pickedColor;
     }
   }
@@ -201,7 +209,7 @@ document
 const toggleEtch = document.querySelector("#etch-style-switch");
 
 function etchStyleSwitch() {
-  const divs = document.querySelectorAll(".divTopClass");
+  const divs = document.querySelectorAll(".divPaintClass");
 
   if (toggleEtch.checked) {
     // console.log(`Toggled etch style position is ${toggleEtch.checked}`);
@@ -286,10 +294,6 @@ function pickTile(button) {
     console.error("Image element not found in pickedTile");
   }
 
-  
-  // pickedTile.addEventListener("click", function () {
-  //   alterTile(currentPickedTile);
-  // });
 }
 
 
@@ -313,36 +317,31 @@ function alterTile(currentPickedTile) {
   const tileCtrlBtn = document.querySelectorAll(".tile-ctrl-btn");
   tileCtrlBtn.forEach(function (button) {
     button.addEventListener("click", function () {
-      // console.log("One of the four tile-ctrl-btn(s) was clicked...");
 
       if (button.classList.contains("rotate-clock")) {
         console.log("test for rotate-clock");
         console.log(`clock = ${currentPickedTile}`);
         currentRotation += 90;
-        // currentPickedTile.style.transform = `rotate(${currentRotation}deg)`;
-
         applyTransform();
+
       } else if (button.classList.contains("rotate-anti")) {
         console.log("test for rotate-anti");
         console.log(`anti = ${currentPickedTile}`);
         currentRotation -= 90;
-        // currentPickedTile.style.transform = `rotate(${currentRotation}deg)`;
-
         applyTransform();
+
       } else if (button.classList.contains("flip-l-r")) {
         console.log("test for flip-l-r");
         console.log(`flip-LR = ${currentPickedTile}`);
         flipX *= -1;
-        // currentPickedTile.style.transform = `scaleX(${flipX})`;
-
         applyTransform();
+
       } else if (button.classList.contains("flip-u-d")) {
         console.log("test for flip-u-d");
         console.log(`flip-UD = ${currentPickedTile}`);
         flipY *= -1;
-        // currentPickedTile.style.transform = `scaleY(${flipY})`;
-
         applyTransform();
+
       }
     });
   });
@@ -351,15 +350,8 @@ function alterTile(currentPickedTile) {
 
   function applyTransform() {
     currentPickedTile.style.transform = `rotate(${currentRotation}deg) scaleX(${flipX}) scaleY(${flipY})`;
-    // let insertCurrentPickedTile = currentPickedTile
-    // if (insertCurrentPickedTile) {
-    //   insertTile(insertCurrentPickedTile); 
-    //   console.log(`This is the insertale Tile ${insertCurrentPickedTile}`);
-    // } else {
-    //   console.error("Image element not found in currentPickedTile");
-    // }
   }
-    let insertCurrentPickedTile = currentPickedTile; //KEEP AS currentPickedTile?????????????????????????????????
+    let insertCurrentPickedTile = currentPickedTile; 
       if (insertCurrentPickedTile) {
         insertTile(insertCurrentPickedTile);
         console.log(`This is the insertable Tile ${insertCurrentPickedTile}`);
@@ -385,8 +377,8 @@ alterTile()
       // const flipUD = document.querySelector(".flip-u-d");
 
 
-  // if (toggleHideTop.checked) {
-  //   document.querySelectorAll(".divTopClass").forEach(function (div) {
+  // if (toggleHidePaint.checked) {
+  //   document.querySelectorAll(".divPaintClass").forEach(function (div) {
   //     div.style.display = "none";
   //   });
 //*
@@ -394,38 +386,46 @@ alterTile()
 function insertTile(insertCurrentPickedTile) {
 
     console.log(`INSERTABLE FINAL SVG = ${insertCurrentPickedTile}`); //DEFINED!!!
-
-    // let insertThisTile = insertCurrentPickedTile.querySelector("img");
-
-    // console.log(`FINAL BOSS = ${insertThisTile}`);
-    
-  if (toggleHideTop.checked) {
-    document.querySelectorAll(".divBotClass").forEach(function (div) {
+  
+  if (toggleHidePaint.checked) {
+    document.querySelectorAll(".divTileClass").forEach(function (div) {
       div.addEventListener("click", function () {
-        // div.style.backgroundColor = pickedColor;
-
-        //READ MORE ABOUT outerHTML...  insertCurrentPickedTile.outerHTML is used to get the entire HTML content of the SVG element,
         let insertThisTile = insertCurrentPickedTile.outerHTML;
-        // insertThisTile.style.height = "20px";
-        // insertThisTile.style.width = "20px";
-
         div.innerHTML = insertThisTile;
-
-        // const insertedSVG = insertThisTile.querySelector("img");
-
-        // Set the desired width and height (adjust these values as needed)
-        // insertedSVG.style.height = "300px";
-        // insertedSVG.style.width = "300px";
-      })
-      
+      });
     });
   } else {
     console.log("Something went sideways...");
   }
 }
 
-
 insertTile()
+
+const modalOpenBtn = document.querySelector("#modal-open-btn")
+modalOpenBtn.addEventListener("click", openModal)
+
+
+function openModal() {
+const customModal = document.querySelector("custom-modal");
+customModal.style.display = "block";
+
+const modalDirections = document.querySelector("#modal-directions");
+
+const modalCloseBtn = document.querySelector("#modal-close-btn");
+modalCloseBtn.addEventListener("click", closeModal);
+
+function closeModal() {
+  customModal.style.display = "none";
+}
+}
+
+const resetAllBtn = document.querySelector("#reset-all-btn");
+  resetAllBtn.addEventListener("click", resetAll)
+
+function resetAll() {
+  location.reload();
+  return false;
+}
 
 
 processData();

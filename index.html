@@ -1,183 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-<meta charset="UTF-8">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-
-<script src="javascript.js" defer></script>
-
-<title>Etch-a-Dungeon</title>
-</head>
-
-<body>
-<header>
-<img src="./svgAssets/~eadTitleGraphic.svg" alt="The words ETCH-A-DUNGEON spelled out in the same dungeon tiles used in this app.">
-<p>Copyright © Mad Muffin Man Design Studio 2024</p>
-</header>
-
-<main-section>
-
-<aside>
-    <aside-content>
-        <top-buttons>    
-            <button class="btn-main">
-                Reset All
-            </button>
-            <button class="btn-main">
-                Directions
-            </button>
-        </top-buttons>
-    <hr>
-<toggle-layer>
-<in-a-column>
-    <p>Current Color</p>
-    <box id="current-color">#efefef80</box>
-</in-a-column>
-
-
-<in-a-row>
-<input type="checkbox" id="etch-style-switch" />
-<label for="etch-style-switch">
-</label>
-<p class="toggle-type">
-Detail vs Stream
-</p>
-</in-a-row>	
-
-<in-a-row>
-<input type="color" id="colorInput">
-<button class="color-preview color-value" id="colorPreview">use box to pick color</button>
-</in-a-row>
-
-<in-a-row>
-<button 
-class="btnc color-value" 
-id="btnc11" 
->
-</button>
-<button 
-class="btnc color-value" 
-id="btnc12" 
->
-</button>
-<button 
-class="btnc color-value" 
-id="btnc13" 
->
-</button>
-<button 
-class="btnc color-value" 
-id="btnc14" 
->
-</button>
-<button 
-class="btnc color-value" 
-id="btnc15" 
->
-</button>
-</in-a-row>
-
-<in-a-row>
-<button 
-class="btnc color-value" 
-id="btnc21" 
->
-</button>
-<button 
-class="btnc color-value" 
-id="btnc22" 
->
-</button>
-<button 
-class="btnc color-value" 
-id="btnc23" 
->
-</button>
-<button 
-class="btnc color-value" 
-id="btnc24" 
->
-</button>
-<button 
-class="btnc color-value" 
-id="btnc25" 
->
-</button>
-</in-a-row>
-
-<in-a-row>
-<button 
-class="btnc color-value" 
-id="btnc31" 
->
-</button>
-<button 
-class="btnc color-value" 
-id="btnc32" 
->
-</button>
-<button 
-class="btnc color-value" 
-id="btnc33" 
->
-</button>
-<button 
-class="btnc color-value" 
-id="btnc34" 
->
-</button>
-<button 
-class="btnc color-value" 
-id="btnc35" 
->
-</button>
-</in-a-row>
-
-<hr>
-<in-a-row>
-<input type="checkbox" id="top-grid-hide" />
-<label for="top-grid-hide">
-</label>
-<p class="toggle-type">
-Paint or Dungeon Tile
-</p>
-</in-a-row>
-<hr>
-
-<in-a-row-ctrl>
-    <button class="tile-ctrl-btn rotate-clock"><img src="./svgAssets/~arrow-clock.svg"></button>
-    <button class="tile-ctrl-btn rotate-anti"><img src="./svgAssets/~arrow-anticlock.svg"</button>
-    <div class="tile-selector-container"><button class="tile-selector-btn"><img src="./svgAssets/01-J.svg"</button></div>
-    <button class="tile-ctrl-btn flip-l-r"><img src="./svgAssets/~flip-leftright.svg"></button>
-    <button class="tile-ctrl-btn flip-u-d"><img src="./svgAssets/~flip-updown.svg"></button>
-</in-a-row-ctrl>
-
-<inner-tile-btn-container>
-
-</inner-tile-btn-container>
-</toggle-layer>
-
-</aside-content>
-
-</aside>
-
-<master-container>
-
-<inner-container-bot>
-</inner-container-bot>
-
-<inner-container-top class="see-top">
-</inner-container-top>
-
-</master-container>
-
-</main-section>
-
-</body>
-
+    <head>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+        <script src="javascript.js" defer></script>
+        <title>Etch-a-Dungeon</title>
+    </head>
+    <body>
+        <header>
+            <img src="./svgAssets/~eadTitleGraphic.svg" alt="The words ETCH-A-DUNGEON spelled out in the same dungeon tiles used in this app.">
+            <me></me>
+        </header>
+        <main-section>
+            <aside>
+                <aside-content>
+                    <top-buttons>    
+                        <button class="btn-main" id="reset-all-btn">
+                        Reset All
+                        </button>
+                        <button class="btn-main" id="modal-open-btn">
+                        Directions
+                        </button>
+                    </top-buttons>
+                        <hr>
+                        <toggle-layer>
+                            <in-a-column>
+                            <p>Current Color</p>
+                            <box id="current-color">#efefef80</box>
+                            </in-a-column>
+                            <in-a-row>
+                            <input type="checkbox" id="etch-style-switch" />
+                            <label for="etch-style-switch">
+                            </label>
+                            <p class="toggle-type">
+                            Detail or Stream
+                            </p>
+                            </in-a-row>	
+                            <in-a-row>
+                            <input type="color" id="color-input">
+                            <button class="color-preview color-value"> use box to pick color </button>
+                            </in-a-row>
+                            <in-a-row>
+                                <button class="btnc color-value" id="btnc11"></button>
+                                <button class="btnc color-value" id="btnc12"></button>
+                                <button class="btnc color-value" id="btnc13"></button>
+                                <button class="btnc color-value" id="btnc14"></button>
+                                <button class="btnc color-value" id="btnc15"></button>
+                            </in-a-row>
+                            <in-a-row>
+                                <button class="btnc color-value" id="btnc21"></button>
+                                <button class="btnc color-value" id="btnc22"></button>
+                                <button class="btnc color-value" id="btnc23"></button>
+                                <button class="btnc color-value" id="btnc24"></button>
+                                <button class="btnc color-value" id="btnc25"></button>
+                            </in-a-row>
+                            <in-a-row>
+                                <button class="btnc color-value" id="btnc31"></button>
+                                <button class="btnc color-value" id="btnc32"></button>
+                                <button class="btnc color-value" id="btnc33"></button>
+                                <button class="btnc color-value" id="btnc34"></button>
+                                <button class="btnc color-value" id="btnc35"></button>
+                            </in-a-row>
+                        <hr>
+                            <in-a-row>
+                                <input type="checkbox" id="paint-grid-hide" />
+                                <label for="paint-grid-hide"></label>
+                                <p class="toggle-type">Paint or Dungeon Tile</p>
+                            </in-a-row>
+                        <hr>
+                            <in-a-row-ctrl>
+                                <button class="tile-ctrl-btn rotate-clock"><img src="./svgAssets/~arrow-clock.svg"></button>
+                                <button class="tile-ctrl-btn rotate-anti"><img src="./svgAssets/~arrow-anticlock.svg"</button>
+                                <div class="tile-selector-container"><button class="tile-selector-btn"><img src="./svgAssets/01-J.svg"</button></div>
+                                <button class="tile-ctrl-btn flip-l-r"><img src="./svgAssets/~flip-leftright.svg"></button>
+                                <button class="tile-ctrl-btn flip-u-d"><img src="./svgAssets/~flip-updown.svg"></button>
+                            </in-a-row-ctrl>
+                            <inner-tile-btn-container></inner-tile-btn-container>
+                        </toggle-layer>
+                </aside-content>
+            </aside>
+            <master-container>
+                <inner-container-tile>
+                </inner-container-tile>
+                <inner-container-paint>
+                </inner-container-paint>
+            </master-container>
+            <custom-modal>
+                <modal-content>
+                    <inner-modal-content id="modal-directions">
+                        <p>DIRECTIONS...</p>
+                            <ul>
+                                <li>Warning: Best viewed on a desktop computer, not mobile-ready.</li>
+                                <br>
+                                <li>You can paint using detail or stream methods.</li>
+                                <br>
+                                <li>The default color is #EFEFEF80. This color can be used to erase other colors while in paint mode. Use the color picker box to select colors not already provided by the 15 preset color buttons. (Be sure to hit the elongated color picker button to activate your chosen color.)</li>
+                                <br>
+                                <li>Switch to "dungeon tile" mode (via the middle toggle switch labeled, "Paint or Dungeon Tile") to create a dungeon map using the 150 tiles preset options provided. Switching will render paint mode hidden.</li>
+                                <br>
+                                <li>Dungeon tile maps can be painted over by returning to paint mode.</li>
+                                <br>
+                                <li>Nota bene: the stream button in paint mode requires that you hold down the left click button on the mouse. Sometimes this function "sticks" though, causing a follow up left click to end the stream of color.</li>
+                            </ul>            
+                        <button id="modal-close-btn">ok</button>
+                    </inner-modal-content>
+                </modal-content>
+            </custom-modal>
+        </main-section>
+    </body>
 </html>
