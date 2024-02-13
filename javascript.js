@@ -1,10 +1,11 @@
+
 //*
 // MAKE TOP LAYER FOR DRAWING AND BOTTOM LAYER FOR DUNGEON TILES
 
 let blockNumTop = 5120; //64x80 at 15px for "drawing" top layer.
 let blockNumBot = 1280; //32x40 at 30px for "dungeon tile" bottom layer.
 
-// let blockNumTop = 20480; //124x160 at 7.5px for more detailed drawing layer. This slowed everything down too much. 
+// let blockNumTop = 20480; //124x160 at 7.5px for more detailed drawing layer. This slowed everything down too much.
 
 let divTop = "";
 let divBot = "";
@@ -13,11 +14,11 @@ const innerContainerTop = document.querySelector("inner-container-top");
 const innerContainerBot = document.querySelector("inner-container-bot");
 
 function makeTopGrid() {
-    for (let i = 0; i < blockNumTop; i++) {
+  for (let i = 0; i < blockNumTop; i++) {
     divTop = document.createElement("div");
     divTop.className = "divTopClass";
     innerContainerTop.appendChild(divTop);
-    }    
+  }
 }
 makeTopGrid();
 
@@ -28,17 +29,17 @@ const toggleHideTop = document.querySelector("#top-grid-hide");
 document.addEventListener("change", hideTopGrid);
 
 function hideTopGrid() {
-  if(toggleHideTop.checked) {
+  if (toggleHideTop.checked) {
     document.querySelectorAll(".divTopClass").forEach(function (div) {
-        div.style.display = "none";
-    })
-    // console.log(`toggleHideTop is ${toggleHideTop.checked}`);
+      div.style.display = "none";
+    });
+    console.log(`toggleHideTop is ${toggleHideTop.checked}`);
   } else {
     document.querySelectorAll(".divTopClass").forEach(function (div) {
       div.style.display = "flex";
     });
-    // console.log(`toggleHideTop is ${toggleHideTop.checked}`);
-  } 
+    console.log(`toggleHideTop is ${toggleHideTop.checked}`);
+  }
 }
 
 hideTopGrid();
@@ -61,7 +62,7 @@ const hexNameThatButton = document.querySelector("#colorPreview");
 
 // UPDATES COLOR PREVIEW AFTER INPUT
 
-colorInput.addEventListener("input", () => {
+colorInput.addEventListener("input", function () {
   const selectedColor = `${colorInput.value}80`;
   // console.log(selectedColor);
   colorPreview.style.backgroundColor = selectedColor;
@@ -73,12 +74,10 @@ colorInput.addEventListener("input", () => {
 
   function hexToRgb(hex) {
     hex = hex.replace(/^#/, "");
-
     let bigint = parseInt(hex, 16);
     let r = (bigint >> 16) & 255;
     let g = (bigint >> 8) & 255;
     let b = bigint & 255;
-
     return { r, g, b };
   }
 
@@ -114,40 +113,38 @@ const currentColorButton = document.querySelector("#current-color");
 document.addEventListener("DOMContentLoaded", function () {
   const btnColors = document.querySelectorAll(".color-value");
 
-    btnColors.forEach(function (button) {
-      button.addEventListener("click", function () {
-        const buttonBgColor = window
-          .getComputedStyle(button)
-          .getPropertyValue("background-color");
-        pickedColor = rgbToHex(buttonBgColor);
-        // console.log(`AAAAA ${pickedColor}`); //DE-FINED HERE
-        // console.log(
-        //   `Button clicked! Background color is: ${rgbToHex(buttonBgColor)}.`);
-        currentColorButton.style.backgroundColor =
-          pickedColor;
-        currentColorButton.textContent = pickedColor;
-
-      });
+  btnColors.forEach(function (button) {
+    button.addEventListener("click", function () {
+      const buttonBgColor = window
+        .getComputedStyle(button)
+        .getPropertyValue("background-color");
+      pickedColor = rgbToHex(buttonBgColor);
+      // console.log(`This color ${pickedColor} is defined here.`); //DE-FINED HERE
+      // console.log(
+      //   `Button clicked! Background color is: ${rgbToHex(buttonBgColor)}.`);
+      currentColorButton.style.backgroundColor = pickedColor;
+      currentColorButton.textContent = pickedColor;
     });
+  });
 
-    // RGB TO HEX
-    function rgbToHex(rgb) {
-      const rgbArray = rgb.match(/\d+/g);
-      const hex =
-        "#" +
-        ("0" + parseInt(rgbArray[0], 10).toString(16)).slice(-2) +
-        ("0" + parseInt(rgbArray[1], 10).toString(16)).slice(-2) +
-        // ("0" + parseInt(rgbArray[2], 10).toString(16)).slice(-2); // C'ED OUT B/C I ADDED CODE LINE BELOW TO FORCE 80 AN END OF HEX (ADDING 80 MEANS 1/2 OPACITY)
-        ("0" + parseInt(rgbArray[2], 10).toString(16)).slice(-2) +
-        ("80");
-      return hex.toUpperCase();
-    }
-  // console.log(`BBBBB ${pickedColor}`); //UNDEFINED HERE
+  // RGB TO HEX
+  function rgbToHex(rgb) {
+    const rgbArray = rgb.match(/\d+/g);
+    const hex =
+      "#" +
+      ("0" + parseInt(rgbArray[0], 10).toString(16)).slice(-2) +
+      ("0" + parseInt(rgbArray[1], 10).toString(16)).slice(-2) +
+      // ("0" + parseInt(rgbArray[2], 10).toString(16)).slice(-2); // C'ED OUT B/C I ADDED CODE LINE BELOW TO FORCE 80 AN END OF HEX (ADDING 80 MEANS 1/2 OPACITY)
+      ("0" + parseInt(rgbArray[2], 10).toString(16)).slice(-2) +
+      "80";
+    return hex.toUpperCase();
+  }
+  // console.log(`I should not see ${pickedColor} here, part 1.`); //UNDEFINED HERE
 });
-  // console.log(`CCCCC ${pickedColor}`); //UNDEFINED HERE
+  // console.log(`I should not see ${pickedColor} here, part 2.`); //UNDEFINED HERE
 
 //*
-// TOGGLE BETWEEN "DRAW DETAIL" (ONE DIV PER CLICK) AND "DRAW SKETCH" (STREAM OF DIVS BEING COLORED)
+// TOGGLE BETWEEN "DRAW DETAIL" (ONE DIV PER CLICK) AND "DRAW SKETCH" (i.e., STREAM OF DIVS BEING COLORED)
 
 // PRIOR HEADACHE: THE ISSUE WITH BOTH FUNCTIONS BEING ACTIVATED WHEN TOGGLED.CHECKED IS TRUE IS BECAUSE THE TWO FUNCTIONS CREATED MULTIPLE EVENT LISTENERS THAT HAD UNINTENDED EFFECTS...
 
@@ -228,51 +225,207 @@ etchStyleSwitch();
 //*
 // CREATE 150 DUNGEON TILE BUTTONS DYNAMICALLY AND ADD UNIQUE DUNGEON TILE SVG
 
-const tileBtnNum = 150;
+async function fetchData() {
+  try {
+    const response = await fetch("data.json");
+    const data = await response.json();
+    return data; // Returns the data here...
+  } catch (error) {
+    console.error("Error fetching data:", error);
+   }
+}
 
 const innerTileBtnContainer = document.querySelector(
   "inner-tile-btn-container");
 
-let tileBtn = "";
-
-function tileBtnMaker() {
-  for (let i = 0; i < tileBtnNum; i++) {
-    tileBtn = document.createElement("button");
-    tileBtn.className = "tile-btn";
-    innerTileBtnContainer.appendChild(tileBtn);
+async function processData() {
+  try {
+    const dungeonTiles = await fetchData();
+    tileBtnMaker(dungeonTiles) //THIS IS VITAL HERE...
+    // console.log(dungeonTiles);
+    // console.log(dungeonTiles.length);
+  } catch (error) {
+    console.error("Error processing data:", error);
   }
 }
 
-tileBtnMaker();
+// let pickedTile = ""
+
+const btnTileClicked = document.querySelectorAll(".tile-btn");
+
+function tileBtnMaker(dungeonTiles) {
+  dungeonTiles.forEach(function (button) {
+    const tileBtn = document.createElement("button");
+    tileBtn.className = "tile-btn";
+    // tileBtn.classList.add("tile-btn");
+    tileBtn.id = `tileBtn${button.id}`;
+    tileBtn.innerHTML = `<img src="${button.svgPath}" alt="Dungeon tile button ${button.id}">`;
+    innerTileBtnContainer.appendChild(tileBtn);
+    // console.log(tileBtn.className);
+    // PUT...HERE...// SELECT DUNGEON TILE VIA BUTTON TILE CLICK
+    tileBtn.addEventListener("click", function () {
+     pickTile(button) 
+    });
+  });
+}
 
 //*
 // SELECT DUNGEON TILE VIA BUTTON TILE CLICK
+function pickTile(button) {
+  console.log("test2");
+  let pickedTile = document.querySelector(".tile-selector-btn");
+  pickedTile.innerHTML = `<img src="${button.svgPath}">`;
+  // console.log(pickedTile.innerHTML); //defined
+
+  let currentPickedTile = pickedTile.querySelector("img"); //THIS WAS WHAT I WAS MISSING!!!!!! Otherwise, currentPickedTile is a string containing the HTML content, not a reference to a DOM element.
+
+  console.log(`currentPickedTile = ${currentPickedTile}`); //defined
+  if (currentPickedTile) {
+    alterTile(currentPickedTile); // Call alterTile directly
+  } else {
+    console.error("Image element not found in pickedTile");
+  }
+
+  
+  // pickedTile.addEventListener("click", function () {
+  //   alterTile(currentPickedTile);
+  // });
+}
 
 
-// document.addEventListener("click", insertTile);
+function alterTile(currentPickedTile) {
+  //!!!BELOW...defensive programming measure to check if currentPickedTile (i.e., picked img element) is undefined before attempting to access its properties. This check ensures that the code inside the alterTile function won't proceed to manipulate the style property of currentPickedTile if currentPickedTile is not a valid DOM element.
 
-// let tileBtn = document.querySelectorAll(".tile-btn");
+  if (!currentPickedTile) {
+    console.error("SVG element is undefined");
+    return;
+  }
 
-// let selectedTile;
+  console.log(currentPickedTile);
 
-// document.addEventListener("click", insertTile);
+  console.log("Meatball");
+  console.log(`alterTile 1 Log ${currentPickedTile}`); //NOW LOGGING...
 
-// function insertTile() {
-//   if (toggleHideTop.checked) {
-//     tileBtn.forEach(function () {
-//       console.log("Tile btn clicked......");
+  let currentRotation = 0;
+  let flipX = 1;
+  let flipY = 1;
 
-//       })
+  const tileCtrlBtn = document.querySelectorAll(".tile-ctrl-btn");
+  tileCtrlBtn.forEach(function (button) {
+    button.addEventListener("click", function () {
+      // console.log("One of the four tile-ctrl-btn(s) was clicked...");
 
-//   }
+      if (button.classList.contains("rotate-clock")) {
+        console.log("test for rotate-clock");
+        console.log(`clock = ${currentPickedTile}`);
+        currentRotation += 90;
+        // currentPickedTile.style.transform = `rotate(${currentRotation}deg)`;
+
+        applyTransform();
+      } else if (button.classList.contains("rotate-anti")) {
+        console.log("test for rotate-anti");
+        console.log(`anti = ${currentPickedTile}`);
+        currentRotation -= 90;
+        // currentPickedTile.style.transform = `rotate(${currentRotation}deg)`;
+
+        applyTransform();
+      } else if (button.classList.contains("flip-l-r")) {
+        console.log("test for flip-l-r");
+        console.log(`flip-LR = ${currentPickedTile}`);
+        flipX *= -1;
+        // currentPickedTile.style.transform = `scaleX(${flipX})`;
+
+        applyTransform();
+      } else if (button.classList.contains("flip-u-d")) {
+        console.log("test for flip-u-d");
+        console.log(`flip-UD = ${currentPickedTile}`);
+        flipY *= -1;
+        // currentPickedTile.style.transform = `scaleY(${flipY})`;
+
+        applyTransform();
+      }
+    });
+  });
+
+  //NEEDED HELP WITH THIS ONE...as there was no continuity between the various button clicks, a button rotation click followed by a button horizontal flip rests the img.
+
+  function applyTransform() {
+    currentPickedTile.style.transform = `rotate(${currentRotation}deg) scaleX(${flipX}) scaleY(${flipY})`;
+    // let insertCurrentPickedTile = currentPickedTile
+    // if (insertCurrentPickedTile) {
+    //   insertTile(insertCurrentPickedTile); 
+    //   console.log(`This is the insertale Tile ${insertCurrentPickedTile}`);
+    // } else {
+    //   console.error("Image element not found in currentPickedTile");
+    // }
+  }
+    let insertCurrentPickedTile = currentPickedTile; //KEEP AS currentPickedTile?????????????????????????????????
+      if (insertCurrentPickedTile) {
+        insertTile(insertCurrentPickedTile);
+        console.log(`This is the insertable Tile ${insertCurrentPickedTile}`);
+      } else {
+        console.error("Image element not found in currentPickedTile");
+      }
+}
+
+alterTile()
+
+
+
+//*
+// MAKE DUNGEON TILES FLIP-ABLE AND ROTATABLE
+
+// function alterPickedTile() {
+//   console.log("test3")
 // }
 
+      // const rotateClock = document.querySelector(".rotate-clock");
+      // const rotateAnti = document.querySelector(".rotate-anti");
+      // const flipLR = document.querySelector(".flip-l-r");
+      // const flipUD = document.querySelector(".flip-u-d");
 
-// insertTile();
 
+  // if (toggleHideTop.checked) {
+  //   document.querySelectorAll(".divTopClass").forEach(function (div) {
+  //     div.style.display = "none";
+  //   });
 //*
 // INSERT DUNGEON TILE VIA MOUSE CLICK
+function insertTile(insertCurrentPickedTile) {
+
+    console.log(`INSERTABLE FINAL SVG = ${insertCurrentPickedTile}`); //DEFINED!!!
+
+    // let insertThisTile = insertCurrentPickedTile.querySelector("img");
+
+    // console.log(`FINAL BOSS = ${insertThisTile}`);
+    
+  if (toggleHideTop.checked) {
+    document.querySelectorAll(".divBotClass").forEach(function (div) {
+      div.addEventListener("click", function () {
+        // div.style.backgroundColor = pickedColor;
+
+        //READ MORE ABOUT outerHTML...  insertCurrentPickedTile.outerHTML is used to get the entire HTML content of the SVG element,
+        let insertThisTile = insertCurrentPickedTile.outerHTML;
+        // insertThisTile.style.height = "20px";
+        // insertThisTile.style.width = "20px";
+
+        div.innerHTML = insertThisTile;
+
+        // const insertedSVG = insertThisTile.querySelector("img");
+
+        // Set the desired width and height (adjust these values as needed)
+        // insertedSVG.style.height = "300px";
+        // insertedSVG.style.width = "300px";
+      })
+      
+    });
+  } else {
+    console.log("Something went sideways...");
+  }
+}
 
 
-//*
-// MAKE DUNGEON TILES FLIPPABLE AND ROTATEABLE
+insertTile()
+
+
+processData();

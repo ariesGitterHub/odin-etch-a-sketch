@@ -6,11 +6,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">	
 <link href="https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="styles.css">
 
 <script src="javascript.js" defer></script>
@@ -19,31 +15,24 @@
 </head>
 
 <body>
-
 <header>
-<!-- <h1>Etch-a-Dungeon</h1> -->
-<img src="eadTitleGraphic.svg" alt="">
+<img src="./svgAssets/~eadTitleGraphic.svg" alt="The words ETCH-A-DUNGEON spelled out in the same dungeon tiles used in this app.">
 <p>Copyright © Mad Muffin Man Design Studio 2024</p>
 </header>
 
 <main-section>
 
 <aside>
-
-
-
-    
-<!-- <h3>Controls</h3> -->
-<aside-content>
-    <top-buttons>    
-        <button class="btn-main">
-            Reset All
-        </button>
-        <button class="btn-main">
-            Directions
-        </button>
-</top-buttons>
-<hr>
+    <aside-content>
+        <top-buttons>    
+            <button class="btn-main">
+                Reset All
+            </button>
+            <button class="btn-main">
+                Directions
+            </button>
+        </top-buttons>
+    <hr>
 <toggle-layer>
 <in-a-column>
     <p>Current Color</p>
@@ -60,17 +49,9 @@ Detail vs Stream
 </p>
 </in-a-row>	
 
-
-
-
 <in-a-row>
-<!-- <color-picker-container class="color-picker"> -->
-
-
 <input type="color" id="colorInput">
-
 <button class="color-preview color-value" id="colorPreview">use box to pick color</button>
-<!-- </color-picker-container> -->
 </in-a-row>
 
 <in-a-row>
@@ -157,63 +138,44 @@ id="btnc35"
 </button>
 </in-a-row>
 
-
-
 <hr>
 <in-a-row>
 <input type="checkbox" id="top-grid-hide" />
 <label for="top-grid-hide">
 </label>
 <p class="toggle-type">
-Paint vs Tiled
+Paint or Dungeon Tile
 </p>
 </in-a-row>
 <hr>
 
-<!-- <in-a-row>
-    <button>1</button>
-    <button>2</button>
-    <button>3</button>
-    <button>4</button>
-    <button>5</button>
-    <button>6</button>
-    <button>7</button>
-    <button>8</button>
-    <button>9</button>
-    <button class="tile-btn"><img src="dungeonTileTest.svg" alt=""></button>
-</in-a-row> -->
+<in-a-row-ctrl>
+    <button class="tile-ctrl-btn rotate-clock"><img src="./svgAssets/~arrow-clock.svg"></button>
+    <button class="tile-ctrl-btn rotate-anti"><img src="./svgAssets/~arrow-anticlock.svg"</button>
+    <div class="tile-selector-container"><button class="tile-selector-btn"><img src="./svgAssets/01-J.svg"</button></div>
+    <button class="tile-ctrl-btn flip-l-r"><img src="./svgAssets/~flip-leftright.svg"></button>
+    <button class="tile-ctrl-btn flip-u-d"><img src="./svgAssets/~flip-updown.svg"></button>
+</in-a-row-ctrl>
 
 <inner-tile-btn-container>
-    
-</inner-tile-btn-container>
 
+</inner-tile-btn-container>
 </toggle-layer>
 
-
 </aside-content>
+
 </aside>
 
 <master-container>
 
-<!-- <container-top>
-<inner-container-top>
-</inner-container-top>
-</container-top> -->
-<!-- <container-bottom> -->
-
 <inner-container-bot>
 </inner-container-bot>
 
-<!-- </container-bottom> -->
-<!-- <container-top> -->
 <inner-container-top class="see-top">
 </inner-container-top>
-<!-- </container-top> -->
-<!-- <img-container>
-<img src="medievalBorderRevised.svg" alt="">
-</img-container> -->
 
 </master-container>
+
 </main-section>
 
 </body>
