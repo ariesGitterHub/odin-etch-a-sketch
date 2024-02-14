@@ -4,8 +4,8 @@ addMe.textContent = me;
 
 // MAKE PAINT LAYER FOR DRAWING AND TILE LAYER FOR DUNGEON TILES
 
-let blockNumPaint = 5120; //64x80 at 15px for "drawing" paint layer.
-let blockNumTile = 1280; //32x40 at 30px for "dungeon tile" layer.
+let blockNumPaint = 5120; // 64x80 at 15px for "drawing" paint layer.
+let blockNumTile = 1280; // 32x40 at 30px for "dungeon tile" layer.
 // let blockNumPaint = 20480; //124x160 at 7.5px for more detailed drawing layer. This slowed everything down too much.
 
 let divPaint = "";
@@ -34,12 +34,11 @@ function hidePaintGrid() {
     document.querySelectorAll(".divPaintClass").forEach(function (div) {
       div.style.display = "none";
     });
-    // console.log(`toggleHidePaint is ${toggleHidePaint.checked}`);
-  } else {
+  } 
+  else {
     document.querySelectorAll(".divPaintClass").forEach(function (div) {
       div.style.display = "block";
     });
-    // console.log(`toggleHidePaint is ${toggleHidePaint.checked}`);
   }
 }
 
@@ -64,11 +63,9 @@ const hexNameThatButton = document.querySelector(".color-preview");
 
 colorInput.addEventListener("input", function () {
   const selectedColor = `${colorInput.value}80`;
-  // console.log(selectedColor);
   colorPreview.style.backgroundColor = selectedColor;
   hexNameThatButton.style.fontSize = "18px";
   hexNameThatButton.textContent = selectedColor;
-  // console.log(hexNameThatButton.textContent);
 
 // HEX TO RGB HELPER
 
@@ -83,7 +80,6 @@ colorInput.addEventListener("input", function () {
 
   let hexColor = selectedColor;
   let rgbColor = hexToRgb(hexColor);
-  // console.log(rgbColor);
 
 // DYNAMICALLY CHANGES TEXT COLOR AGAINST BACKGROUND COLOR FOR CONTRAST
 
@@ -96,7 +92,8 @@ colorInput.addEventListener("input", function () {
     if (yiq >= 128) {
       contrastColor = "#000";
       hexNameThatButton.style.color = contrastColor;
-    } else {
+    } 
+    else {
       contrastColor = "#fff";
       hexNameThatButton.style.color = contrastColor;
     }
@@ -120,10 +117,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .getComputedStyle(button)
         .getPropertyValue("background-color");
       pickedColor = rgbToHex(buttonBgColor);
-      // console.log(`This color ${pickedColor} is defined here.`); //DE-FINED HERE
-      // console.log(
-      //   `Button clicked! Background color is: ${rgbToHex(buttonBgColor)}.`);
-
+      // console.log(`This color ${pickedColor} is defined here.`);
+      // console.log(`Button clicked! Background color is: ${rgbToHex(buttonBgColor)}.`);
       currentColorButton.style.backgroundColor = pickedColor;
       currentColorButton.textContent = pickedColor;
     });
@@ -136,20 +131,20 @@ document.addEventListener("DOMContentLoaded", function () {
       "#" +
       ("0" + parseInt(rgbArray[0], 10).toString(16)).slice(-2) +
       ("0" + parseInt(rgbArray[1], 10).toString(16)).slice(-2) +
-      // ("0" + parseInt(rgbArray[2], 10).toString(16)).slice(-2); // C'ED OUT B/C I ADDED CODE LINE BELOW TO FORCE 80 AN END OF HEX (ADDING 80 MEANS 1/2 OPACITY)
+      // ("0" + parseInt(rgbArray[2], 10).toString(16)).slice(-2); // COMMENTED OUT B/C I ADDED CODE LINE BELOW TO FORCE 80 AN END OF HEX (ADDING 80 MEANS 1/2 OPACITY). LEAVE IN, IN CASE I CHANGE MY MIND.
 
       ("0" + parseInt(rgbArray[2], 10).toString(16)).slice(-2) +
       "80";
       
     return hex.toUpperCase();
   }
-  // console.log(`I should not see ${pickedColor} here, part 1.`); //UNDEFINED HERE
+  // console.log(`UNDEFINED HERE. I should not see ${pickedColor} here, part 1.`);
 });
-  // console.log(`I should not see ${pickedColor} here, part 2.`); //UNDEFINED HERE
+  // console.log(`UNDEFINED HERE. I should not see ${pickedColor} here, part 2.`);
 
 // TOGGLE BETWEEN "DRAW DETAIL" (ONE DIV PER CLICK) AND "DRAW SKETCH" (i.e., STREAM OF DIVS BEING COLORED)
 
-// PRIOR HEADACHE: THE ISSUE WITH BOTH FUNCTIONS BEING ACTIVATED WHEN TOGGLED.CHECKED IS TRUE IS BECAUSE THE TWO FUNCTIONS CREATED MULTIPLE EVENT LISTENERS THAT HAD UNINTENDED EFFECTS...
+// PRIOR HEADACHE: THE ISSUE WITH BOTH FUNCTIONS BEING ACTIVATED WHEN "TOGGLED.CHECKED" IS TRUE IS BECAUSE THE TWO FUNCTIONS CREATED MULTIPLE EVENT LISTENERS THAT HAD UNINTENDED EFFECTS.
 
 let isDrawDetailOn = false;
 let isDrawSketchOn = false;
@@ -165,23 +160,22 @@ function drawDetailOff(div) {
   div.removeEventListener("click", handleDetail);
 }
 
-// FINALLY GOT THIS TO WORK BETTER NOW B/C I ADDED ADDITIONAL BOOLEAN GATE ON BOTH DETAIL AND SKETCH FUNCTIONS, i.e., !isDrawDetailOn and !isDrawSketchOn... ONE ISSUE: IN STREAM MODE CLICKS STILL GET STUCK CAUSING TWO STREAM CASES. THIS MIGHT BE CAUSE BY MEATSPACE MOUSE CLICK BUTTON.
+// FINALLY GOT THIS TO WORK BETTER NOW B/C I ADDED ADDITIONAL BOOLEAN GATE ON BOTH DETAIL AND SKETCH FUNCTIONS, I.E., !isDrawDetailOn and !isDrawSketchOn. ONE ISSUE: IN STREAM MODE CLICKS STILL GET STUCK CAUSING TWO STREAM CASES. THIS MIGHT BE CAUSE BY MEAT-SPACE MOUSE CLICK BUTTON.
 
 let isMouseBtnPressed = false;
 
 function drawSketchOn(div) {
   div.addEventListener("mousedown", function () {
     isMouseBtnPressed = true;
-    // console.log(`isMouseBtnPressed = ${isMouseBtnPressed}`);
   });
 }
 
 function drawSketchTempOff() {
   document.addEventListener("mouseup", function () {
     isMouseBtnPressed = false;
-    // console.log(`isMouseBtnPressed = ${isMouseBtnPressed}`);
   });
 }
+
 drawSketchTempOff();
 
 document.addEventListener("mousemove", function (event) {
@@ -207,14 +201,13 @@ function etchStyleSwitch() {
   const divs = document.querySelectorAll(".divPaintClass");
 
   if (toggleEtch.checked) {
-    // console.log(`Toggled etch style position is ${toggleEtch.checked}`);
     isDrawSketchOn = true;
     isDrawDetailOn = false;
 
     divs.forEach(drawSketchOn);
     divs.forEach(drawDetailOff);
-  } else {
-    // console.log(`Toggled etch style position is ${toggleEtch.checked}`);
+  } 
+  else {
     isDrawDetailOn = true;
     isDrawSketchOn = false;
 
@@ -225,14 +218,15 @@ function etchStyleSwitch() {
 
 etchStyleSwitch();
 
-// CREATE 150 DUNGEON TILE BUTTONS DYNAMICALLY AND ADD UNIQUE DUNGEON TILE SVG
+// CREATE 150 DUNGEON TILE BUTTONS DYNAMICALLY AND ADD UNIQUE DUNGEON TILE SVGS
 
 async function fetchData() {
   try {
     const response = await fetch("data.json");
     const data = await response.json();
     return data; // Returns the data here...
-  } catch (error) {
+  } 
+  catch (error) {
     console.error("Error fetching data:", error);
    }
 }
@@ -244,9 +238,8 @@ async function processData() {
   try {
     const dungeonTiles = await fetchData();
     tileBtnMaker(dungeonTiles) //THIS IS VITAL HERE...
-    // console.log(dungeonTiles);
-    // console.log(dungeonTiles.length);
-  } catch (error) {
+  } 
+  catch (error) {
     console.error("Error processing data:", error);
   }
 }
@@ -271,30 +264,22 @@ function tileBtnMaker(dungeonTiles) {
 function pickTile(button) {
   let pickedTile = document.querySelector(".tile-selector-btn");
   pickedTile.innerHTML = `<img src="${button.svgPath}">`;
-  // console.log(pickedTile.innerHTML); //defined
-
   let currentPickedTile = pickedTile.querySelector("img"); //THIS WAS WHAT I WAS MISSING!!!!!! Otherwise, currentPickedTile is a string containing the HTML content, not a reference to a DOM element.
-
-  // console.log(`currentPickedTile = ${currentPickedTile}`); //defined
   if (currentPickedTile) {
     alterTile(currentPickedTile); // Call alterTile directly
-  } else {
-    console.error("Image element not found in pickedTile");
+  } 
+  else {
+    console.error("Image element not found in pickedTile.");
   }
-
 }
 
 // MAKE DUNGEON TILES FLIP-ABLE AND ROTATABLE
 
 function alterTile(currentPickedTile) {
   //!!!BELOW...defensive programming measure to check if currentPickedTile (i.e., picked img element) is undefined before attempting to access its properties. This check ensures that the code inside the alterTile function won't proceed to manipulate the style property of currentPickedTile if currentPickedTile is not a valid DOM element.
-
   if (!currentPickedTile) {
-    // console.error("SVG element is undefined");
     return;
   }
-
-  // console.log(`alterTile = ${currentPickedTile}`); //NOW LOGGING...
 
   let currentRotation = 0;
   let flipX = 1;
@@ -305,26 +290,18 @@ function alterTile(currentPickedTile) {
     button.addEventListener("click", function () {
 
       if (button.classList.contains("rotate-clock")) {
-        // console.log("test for rotate-clock");
-        // console.log(`clock = ${currentPickedTile}`);
         currentRotation += 90;
         applyTransform();
 
       } else if (button.classList.contains("rotate-anti")) {
-        // console.log("test for rotate-anti");
-        // console.log(`anti = ${currentPickedTile}`);
         currentRotation -= 90;
         applyTransform();
 
       } else if (button.classList.contains("flip-l-r")) {
-        // console.log("test for flip-l-r");
-        // console.log(`flip-LR = ${currentPickedTile}`);
         flipX *= -1;
         applyTransform();
 
       } else if (button.classList.contains("flip-u-d")) {
-        // console.log("test for flip-u-d");
-        // console.log(`flip-UD = ${currentPickedTile}`);
         flipY *= -1;
         applyTransform();
 
@@ -340,8 +317,8 @@ function alterTile(currentPickedTile) {
     let insertCurrentPickedTile = currentPickedTile; 
       if (insertCurrentPickedTile) {
         insertTile(insertCurrentPickedTile);
-        // console.log(`This is the insertable Tile ${insertCurrentPickedTile}`);
-      } else {
+      } 
+      else {
         console.error("Image element not found in currentPickedTile");
       }
 }
@@ -351,9 +328,6 @@ alterTile()
 // INSERT DUNGEON TILE VIA MOUSE CLICK
 
 function insertTile(insertCurrentPickedTile) {
-
-    // console.log(`INSERTABLE FINAL SVG = ${insertCurrentPickedTile}`); //DEFINED!!!
-  
   if (toggleHidePaint.checked) {
     document.querySelectorAll(".divTileClass").forEach(function (div) {
       div.addEventListener("click", function () {
