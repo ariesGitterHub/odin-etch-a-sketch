@@ -28,20 +28,18 @@
                         <hr>
                         <toggle-layer>
                             <in-a-column>
-                            <p>Current Color</p>
-                            <box id="current-color">#efefef80</box>
+                                <p>Current Color</p>
+                                <box id="current-color">#efefef80</box>
                             </in-a-column>
+                            <in-a-row-label>
+                                <p class="toggle-type">Paint: Detail or Stream</p>
+                                <input type="checkbox" id="paint-style-switch" />
+                                <label for="paint-style-switch">
+                                </label>
+                            </in-a-row-label>	
                             <in-a-row>
-                            <input type="checkbox" id="etch-style-switch" />
-                            <label for="etch-style-switch">
-                            </label>
-                            <p class="toggle-type">
-                            Detail or Stream
-                            </p>
-                            </in-a-row>	
-                            <in-a-row>
-                            <input type="color" id="color-input">
-                            <button class="color-preview color-value"> use box to pick color </button>
+                                <input type="color" id="color-input">
+                                <button class="color-preview color-value"> use box to pick color </button>
                             </in-a-row>
                             <in-a-row>
                                 <button class="btnc color-value" id="btnc11"></button>
@@ -65,11 +63,11 @@
                                 <button class="btnc color-value" id="btnc35"></button>
                             </in-a-row>
                         <hr>
-                            <in-a-row>
+                            <in-a-row-label>
+                                <p class="toggle-type">Paint or Dungeon Layer</p>
                                 <input type="checkbox" id="paint-grid-hide" />
                                 <label for="paint-grid-hide"></label>
-                                <p class="toggle-type">Paint or Dungeon Tile</p>
-                            </in-a-row>
+                            </in-a-row-label>
                         <hr>
                             <in-a-row-ctrl>
                                 <button class="tile-ctrl-btn rotate-clock"><img src="./svgAssets/~arrow-clock.svg"></button>
@@ -78,6 +76,13 @@
                                 <button class="tile-ctrl-btn flip-l-r"><img src="./svgAssets/~flip-leftright.svg"></button>
                                 <button class="tile-ctrl-btn flip-u-d"><img src="./svgAssets/~flip-updown.svg"></button>
                             </in-a-row-ctrl>
+                            <!-- TODO:  Implement "detail or stream" effect for tile mode at a later date (or even at all?)-->
+                            <!-- <in-a-row-label>
+                                <p class="toggle-type">Detail or Stream</p>
+                                <input type="checkbox" id="tile-style-switch" />
+                                <label for="tile-style-switch">
+                                </label>
+                            </in-a-row-label>	 -->
                             <inner-tile-btn-container></inner-tile-btn-container>
                         </toggle-layer>
                 </aside-content>
@@ -91,9 +96,11 @@
             <custom-modal>
                 <modal-content>
                     <inner-modal-content id="modal-directions">
-                        <p>DIRECTIONS...</p>
+                        <p>DIRECTIONS</p>
                             <ul>
                                 <li>Warning: Best viewed on a desktop computer, not mobile-ready.</li>
+                                <br>
+                                <li>Be sure to adjust screen dimensions to see entire left toolbar and full rectangular grid area.</li>
                                 <br>
                                 <li>You can paint using detail or stream methods.</li>
                                 <br>
@@ -103,7 +110,7 @@
                                 <br>
                                 <li>Dungeon tile maps can be painted over by returning to paint mode.</li>
                                 <br>
-                                <li>Nota bene: the stream button in paint mode requires that you hold down the left click button on the mouse. Sometimes this function "sticks" though, causing a follow up left click to end the stream of color.</li>
+                                <li>Nota bene: the stream button in paint mode requires that you hold down the left click button on the mouse. Sometimes this function <span>sticks</span>, however, causing a follow up left click to end the stream of color.</li>
                             </ul>            
                         <button id="modal-close-btn">ok</button>
                     </inner-modal-content>

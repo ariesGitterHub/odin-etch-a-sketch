@@ -101,7 +101,6 @@ colorInput.addEventListener("input", function () {
   setContrastColor();
 });
 
-
 // GET CSS COLOR OF THE COLOR SELECTOR BUTTONS
 
 let pickedColor;
@@ -125,6 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 // RGB TO HEX
+
   function rgbToHex(rgb) {
     const rgbArray = rgb.match(/\d+/g);
     const hex =
@@ -138,9 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
       
     return hex.toUpperCase();
   }
-  // console.log(`UNDEFINED HERE. I should not see ${pickedColor} here, part 1.`);
 });
-  // console.log(`UNDEFINED HERE. I should not see ${pickedColor} here, part 2.`);
 
 // TOGGLE BETWEEN "DRAW DETAIL" (ONE DIV PER CLICK) AND "DRAW SKETCH" (i.e., STREAM OF DIVS BEING COLORED)
 
@@ -192,15 +190,15 @@ function drawSketchOff(div) {
 }
 
 document
-  .querySelector("#etch-style-switch")
-  .addEventListener("change", etchStyleSwitch);
+  .querySelector("#paint-style-switch")
+  .addEventListener("change", paintStyleSwitch);
 
-const toggleEtch = document.querySelector("#etch-style-switch");
+const togglePaintStyle = document.querySelector("#paint-style-switch");
 
-function etchStyleSwitch() {
+function paintStyleSwitch() {
   const divs = document.querySelectorAll(".divPaintClass");
 
-  if (toggleEtch.checked) {
+  if (togglePaintStyle.checked) {
     isDrawSketchOn = true;
     isDrawDetailOn = false;
 
@@ -216,7 +214,7 @@ function etchStyleSwitch() {
   }
 }
 
-etchStyleSwitch();
+paintStyleSwitch();
 
 // CREATE 150 DUNGEON TILE BUTTONS DYNAMICALLY AND ADD UNIQUE DUNGEON TILE SVGS
 
@@ -224,7 +222,7 @@ async function fetchData() {
   try {
     const response = await fetch("data.json");
     const data = await response.json();
-    return data; // Returns the data here...
+    return data;
   } 
   catch (error) {
     console.error("Error fetching data:", error);
@@ -237,7 +235,7 @@ const innerTileBtnContainer = document.querySelector(
 async function processData() {
   try {
     const dungeonTiles = await fetchData();
-    tileBtnMaker(dungeonTiles) //THIS IS VITAL HERE...
+    tileBtnMaker(dungeonTiles) //THIS IS VITAL HERE...REMINDER.
   } 
   catch (error) {
     console.error("Error processing data:", error);
@@ -264,7 +262,7 @@ function tileBtnMaker(dungeonTiles) {
 function pickTile(button) {
   let pickedTile = document.querySelector(".tile-selector-btn");
   pickedTile.innerHTML = `<img src="${button.svgPath}">`;
-  let currentPickedTile = pickedTile.querySelector("img"); //THIS WAS WHAT I WAS MISSING!!!!!! Otherwise, currentPickedTile is a string containing the HTML content, not a reference to a DOM element.
+  let currentPickedTile = pickedTile.querySelector("img"); //THIS WAS WHAT I WAS MISSING!!! Otherwise, currentPickedTile is a string containing the HTML content, not a true DOM element.
   if (currentPickedTile) {
     alterTile(currentPickedTile); // Call alterTile directly
   } 
@@ -276,7 +274,7 @@ function pickTile(button) {
 // MAKE DUNGEON TILES FLIP-ABLE AND ROTATABLE
 
 function alterTile(currentPickedTile) {
-  //!!!BELOW...defensive programming measure to check if currentPickedTile (i.e., picked img element) is undefined before attempting to access its properties. This check ensures that the code inside the alterTile function won't proceed to manipulate the style property of currentPickedTile if currentPickedTile is not a valid DOM element.
+  //BELOW...defensive programming measure to check if currentPickedTile (i.e., picked img element) is undefined before attempting to access its properties. This check ensures that the code inside the alterTile function won't proceed to manipulate the style property of currentPickedTile if currentPickedTile is not a valid DOM element.
   if (!currentPickedTile) {
     return;
   }
@@ -369,4 +367,3 @@ function resetAll() {
   location.reload();
   return false;
 }
-

@@ -104,10 +104,9 @@ aside {
   background-color: grey;
   display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: start;
+    align-items: start;
+    justify-content: center;
   padding: 5px 20px 5px 20px;
-  text-align: left;
 }
 
 aside h3 {
@@ -127,9 +126,9 @@ top-buttons {
 }
 
 hr {
-  height: 3px;
+  height: 1px;
   width: 280px;
-  margin: 10px;
+  margin: 8px;
 }
 
 toggle-layer {
@@ -137,12 +136,10 @@ toggle-layer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  margin: auto;
 }
 
 in-a-row {
   display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
@@ -157,7 +154,6 @@ in-a-row input {
 in-a-row p {
   color: var(--my-dkgray);  
   font-size: 16px;
-  margin: 5px;
 }
 
 in-a-row-ctrl {
@@ -165,7 +161,7 @@ in-a-row-ctrl {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-  padding: 5px 0 5px 0;
+  padding: 5px 0 10px 0;
 }
 
 in-a-column {
@@ -173,13 +169,23 @@ in-a-column {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+        margin: auto;
 }
 
 in-a-column p {
   font-family: var(--title-text); 
   font-size: 16px;
   margin: -3px;
-  padding: 5px;
+}
+
+in-a-row-label {
+  display: flex;
+    align-items: center;
+  margin: -5px;
+}
+
+in-a-row-label p {
+text-align: left;
 }
 
 inner-tile-btn-container {
@@ -211,7 +217,6 @@ inner-container-paint {
   height: 15px;
   width: 15px;
   background-color: var(--whi5);
-  /* border: 1px solid grey; */
     display: flex;  
     align-items: center;
     justify-content: center;
@@ -268,7 +273,6 @@ button {
   height: 50px;
   width: 130px;
   background-color: var(--whi5);
-  /* border: 3px solid var(--black); */
   border-radius: 50px;
   color: var(--bla5);
   font-family: var(--title-text);
@@ -288,6 +292,7 @@ button {
   width: 190px;
   background-color: var(--whi5);
   border-radius: 50px;
+  color: var(--my-dkgray);
   display: flex;
     align-items: center;
     justify-content: center;
@@ -371,8 +376,9 @@ button:active {
 }
 
 .toggle-type { 
-  font-size: 16px;
+  font-size: 14px;
   padding: 5px;
+  text-align: center;
 }
 
 .toggle-title, .toggle-type{
@@ -452,7 +458,6 @@ label {
   background: var(--bla5);
   border: 3px solid var(--my-dkgray);
   border-radius: 50px;
-  display: flex;
   position: relative;
 }
 
@@ -517,11 +522,15 @@ inner-modal-content ul {
   text-align: justify;
 }
 
+span {
+  font-style: italic;
+}
+
 
 #modal-directions {
   color: var(--my-dkgray);
   font-family: var(--title-text);
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 100;
   text-align: center;  
 }
@@ -550,17 +559,4 @@ inner-modal-content ul {
   background-color: var(--my-gold);
   border: 10px dashed var(--my-red);
   color: var(--my-dkgray)
-}
-
-/* MEDIA QUERIES */
-
-/* @media (min-width: 768px) {
-aside {
-order: -1;
-flex: 0 0 260px;
-}
-
-main-section {
-flex-direction: row;
-}
 }
