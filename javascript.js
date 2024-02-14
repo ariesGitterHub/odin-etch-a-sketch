@@ -2,7 +2,6 @@ const me = "Copyright © Mad Muffin Man Design Studio 2024";
 const addMe = document.querySelector("me");
 addMe.textContent = me;
 
-//*
 // MAKE PAINT LAYER FOR DRAWING AND TILE LAYER FOR DUNGEON TILES
 
 let blockNumPaint = 5120; //64x80 at 15px for "drawing" paint layer.
@@ -35,12 +34,12 @@ function hidePaintGrid() {
     document.querySelectorAll(".divPaintClass").forEach(function (div) {
       div.style.display = "none";
     });
-    console.log(`toggleHidePaint is ${toggleHidePaint.checked}`);
+    // console.log(`toggleHidePaint is ${toggleHidePaint.checked}`);
   } else {
     document.querySelectorAll(".divPaintClass").forEach(function (div) {
       div.style.display = "block";
     });
-    console.log(`toggleHidePaint is ${toggleHidePaint.checked}`);
+    // console.log(`toggleHidePaint is ${toggleHidePaint.checked}`);
   }
 }
 
@@ -55,7 +54,6 @@ function makeTileGrid() {
 }
 makeTileGrid();
 
-//*
 // COLOR PICKER AND PREVIEW BUTTON THAT IS CLICKABLE
 
 const colorInput = document.querySelector("#color-input");
@@ -72,7 +70,7 @@ colorInput.addEventListener("input", function () {
   hexNameThatButton.textContent = selectedColor;
   // console.log(hexNameThatButton.textContent);
 
-  // HEX TO RGB HELPER
+// HEX TO RGB HELPER
 
   function hexToRgb(hex) {
     hex = hex.replace(/^#/, "");
@@ -87,7 +85,7 @@ colorInput.addEventListener("input", function () {
   let rgbColor = hexToRgb(hexColor);
   // console.log(rgbColor);
 
-  // DYNAMICALLY CHANGES TEXT COLOR AGAINST BACKGROUND COLOR FOR CONTRAST
+// DYNAMICALLY CHANGES TEXT COLOR AGAINST BACKGROUND COLOR FOR CONTRAST
 
   function setContrastColor() {
     const { r, g, b } = rgbColor;
@@ -106,16 +104,14 @@ colorInput.addEventListener("input", function () {
   setContrastColor();
 });
 
-//*
-// GET CSS COLOR OF THE COLOR SELECTOR BUTTONS
 
+// GET CSS COLOR OF THE COLOR SELECTOR BUTTONS
 
 let pickedColor;
 const currentColorButton = document.querySelector("#current-color");
 
 document.addEventListener("DOMContentLoaded", function () {
   const btnColors = document.querySelectorAll(".color-value");
-  // const noColor = document.querySelector("#no-color");
  
   btnColors.forEach(function (button) {
     button.addEventListener("click", function () {
@@ -133,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // RGB TO HEX
+// RGB TO HEX
   function rgbToHex(rgb) {
     const rgbArray = rgb.match(/\d+/g);
     const hex =
@@ -151,7 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
   // console.log(`I should not see ${pickedColor} here, part 2.`); //UNDEFINED HERE
 
-//*
 // TOGGLE BETWEEN "DRAW DETAIL" (ONE DIV PER CLICK) AND "DRAW SKETCH" (i.e., STREAM OF DIVS BEING COLORED)
 
 // PRIOR HEADACHE: THE ISSUE WITH BOTH FUNCTIONS BEING ACTIVATED WHEN TOGGLED.CHECKED IS TRUE IS BECAUSE THE TWO FUNCTIONS CREATED MULTIPLE EVENT LISTENERS THAT HAD UNINTENDED EFFECTS...
@@ -230,7 +225,6 @@ function etchStyleSwitch() {
 
 etchStyleSwitch();
 
-//*
 // CREATE 150 DUNGEON TILE BUTTONS DYNAMICALLY AND ADD UNIQUE DUNGEON TILE SVG
 
 async function fetchData() {
@@ -257,37 +251,31 @@ async function processData() {
   }
 }
 
-// let pickedTile = ""
-
 const btnTileClicked = document.querySelectorAll(".tile-btn");
 
 function tileBtnMaker(dungeonTiles) {
   dungeonTiles.forEach(function (button) {
     const tileBtn = document.createElement("button");
     tileBtn.className = "tile-btn";
-    // tileBtn.classList.add("tile-btn");
     tileBtn.id = `tileBtn${button.id}`;
     tileBtn.innerHTML = `<img src="${button.svgPath}" alt="Dungeon tile button ${button.id}">`;
     innerTileBtnContainer.appendChild(tileBtn);
-    // console.log(tileBtn.className);
-    // PUT...HERE...// SELECT DUNGEON TILE VIA BUTTON TILE CLICK
     tileBtn.addEventListener("click", function () {
-     pickTile(button) 
+    pickTile(button) 
     });
   });
 }
 
-//*
 // SELECT DUNGEON TILE VIA BUTTON TILE CLICK
+
 function pickTile(button) {
-  console.log("test2");
   let pickedTile = document.querySelector(".tile-selector-btn");
   pickedTile.innerHTML = `<img src="${button.svgPath}">`;
   // console.log(pickedTile.innerHTML); //defined
 
   let currentPickedTile = pickedTile.querySelector("img"); //THIS WAS WHAT I WAS MISSING!!!!!! Otherwise, currentPickedTile is a string containing the HTML content, not a reference to a DOM element.
 
-  console.log(`currentPickedTile = ${currentPickedTile}`); //defined
+  // console.log(`currentPickedTile = ${currentPickedTile}`); //defined
   if (currentPickedTile) {
     alterTile(currentPickedTile); // Call alterTile directly
   } else {
@@ -296,19 +284,17 @@ function pickTile(button) {
 
 }
 
+// MAKE DUNGEON TILES FLIP-ABLE AND ROTATABLE
 
 function alterTile(currentPickedTile) {
   //!!!BELOW...defensive programming measure to check if currentPickedTile (i.e., picked img element) is undefined before attempting to access its properties. This check ensures that the code inside the alterTile function won't proceed to manipulate the style property of currentPickedTile if currentPickedTile is not a valid DOM element.
 
   if (!currentPickedTile) {
-    console.error("SVG element is undefined");
+    // console.error("SVG element is undefined");
     return;
   }
 
-  console.log(currentPickedTile);
-
-  console.log("Meatball");
-  console.log(`alterTile 1 Log ${currentPickedTile}`); //NOW LOGGING...
+  // console.log(`alterTile = ${currentPickedTile}`); //NOW LOGGING...
 
   let currentRotation = 0;
   let flipX = 1;
@@ -319,26 +305,26 @@ function alterTile(currentPickedTile) {
     button.addEventListener("click", function () {
 
       if (button.classList.contains("rotate-clock")) {
-        console.log("test for rotate-clock");
-        console.log(`clock = ${currentPickedTile}`);
+        // console.log("test for rotate-clock");
+        // console.log(`clock = ${currentPickedTile}`);
         currentRotation += 90;
         applyTransform();
 
       } else if (button.classList.contains("rotate-anti")) {
-        console.log("test for rotate-anti");
-        console.log(`anti = ${currentPickedTile}`);
+        // console.log("test for rotate-anti");
+        // console.log(`anti = ${currentPickedTile}`);
         currentRotation -= 90;
         applyTransform();
 
       } else if (button.classList.contains("flip-l-r")) {
-        console.log("test for flip-l-r");
-        console.log(`flip-LR = ${currentPickedTile}`);
+        // console.log("test for flip-l-r");
+        // console.log(`flip-LR = ${currentPickedTile}`);
         flipX *= -1;
         applyTransform();
 
       } else if (button.classList.contains("flip-u-d")) {
-        console.log("test for flip-u-d");
-        console.log(`flip-UD = ${currentPickedTile}`);
+        // console.log("test for flip-u-d");
+        // console.log(`flip-UD = ${currentPickedTile}`);
         flipY *= -1;
         applyTransform();
 
@@ -346,7 +332,7 @@ function alterTile(currentPickedTile) {
     });
   });
 
-  //NEEDED HELP WITH THIS ONE...as there was no continuity between the various button clicks, a button rotation click followed by a button horizontal flip rests the img.
+//NEEDED HELP WITH THIS ONE...as there was no continuity between the various button clicks, a button rotation click followed by a button horizontal flip rests the img.
 
   function applyTransform() {
     currentPickedTile.style.transform = `rotate(${currentRotation}deg) scaleX(${flipX}) scaleY(${flipY})`;
@@ -354,7 +340,7 @@ function alterTile(currentPickedTile) {
     let insertCurrentPickedTile = currentPickedTile; 
       if (insertCurrentPickedTile) {
         insertTile(insertCurrentPickedTile);
-        console.log(`This is the insertable Tile ${insertCurrentPickedTile}`);
+        // console.log(`This is the insertable Tile ${insertCurrentPickedTile}`);
       } else {
         console.error("Image element not found in currentPickedTile");
       }
@@ -362,30 +348,11 @@ function alterTile(currentPickedTile) {
 
 alterTile()
 
-
-
-//*
-// MAKE DUNGEON TILES FLIP-ABLE AND ROTATABLE
-
-// function alterPickedTile() {
-//   console.log("test3")
-// }
-
-      // const rotateClock = document.querySelector(".rotate-clock");
-      // const rotateAnti = document.querySelector(".rotate-anti");
-      // const flipLR = document.querySelector(".flip-l-r");
-      // const flipUD = document.querySelector(".flip-u-d");
-
-
-  // if (toggleHidePaint.checked) {
-  //   document.querySelectorAll(".divPaintClass").forEach(function (div) {
-  //     div.style.display = "none";
-  //   });
-//*
 // INSERT DUNGEON TILE VIA MOUSE CLICK
+
 function insertTile(insertCurrentPickedTile) {
 
-    console.log(`INSERTABLE FINAL SVG = ${insertCurrentPickedTile}`); //DEFINED!!!
+    // console.log(`INSERTABLE FINAL SVG = ${insertCurrentPickedTile}`); //DEFINED!!!
   
   if (toggleHidePaint.checked) {
     document.querySelectorAll(".divTileClass").forEach(function (div) {
@@ -395,21 +362,21 @@ function insertTile(insertCurrentPickedTile) {
       });
     });
   } else {
-    console.log("Something went sideways...");
+    console.log("Toggle not set to dungeon tile mode.");
   }
 }
 
 insertTile()
+processData();
 
 const modalOpenBtn = document.querySelector("#modal-open-btn")
 modalOpenBtn.addEventListener("click", openModal)
 
+// CUSTOM MODAL WILL DISPLAY DIRECTIONS
 
 function openModal() {
 const customModal = document.querySelector("custom-modal");
 customModal.style.display = "block";
-
-const modalDirections = document.querySelector("#modal-directions");
 
 const modalCloseBtn = document.querySelector("#modal-close-btn");
 modalCloseBtn.addEventListener("click", closeModal);
@@ -422,10 +389,10 @@ function closeModal() {
 const resetAllBtn = document.querySelector("#reset-all-btn");
   resetAllBtn.addEventListener("click", resetAll)
 
+//RESET ALL BUTTON RELOADS PAGE AND CLEARS ALL INPUTS
+
 function resetAll() {
   location.reload();
   return false;
 }
 
-
-processData();
