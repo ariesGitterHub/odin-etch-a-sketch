@@ -495,8 +495,8 @@ custom-modal {
 }
 
 modal-content {
-  height:99vh;
-  width: 99vw;
+  height:95vh;
+  width: 95vw;
   background-color: var(--gol5);
   border: 30px dashed var(--red5);
   display: flex;
